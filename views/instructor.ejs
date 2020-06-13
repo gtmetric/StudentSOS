@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Instructor Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://drive.google.com/u/0/uc?id=1Gb58QY7dUd87ji3ZX2fTbju2v6Wlmyj2&export=download">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <%- include("./styles") %> 
+    <script type="text/javascript">
+        $(document).ready(async function() {
+
+            $(document).bind("keypress", function(e) {
+                if(e.keyCode==13){
+                    $('#submit').trigger('click');
+                }
+            });
+
+            async function getInfo() {
+                let response = await fetch(window.location.href + "info", {
+                    method: "GET",
+                    headers: {
+                        'Accept': 'application/json',
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                let data = await response.json();
+
+                $("#topic").attr("placeholder", data.data.topic);
+
+                let output1 = null;
+                if(data.data.ok==0) {
+                    output1 = "<div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.sos + "%\"> " + data.data.sos + "% SOS </div>";
+                }
+                else if(data.data.ok<=8) {
+                    output1 = "<div class=\"progress-bar progress-bar-success progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.ok + "%\"> </div>" +
+                        "<div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.sos + "%\"> " + data.data.sos + "% SOS </div>";
+                }
+                else if(data.data.sos<=8) {
+                    output1 = "<div class=\"progress-bar progress-bar-success progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.ok + "%\"> " + data.data.ok + "% OK </div>" +
+                        "<div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.sos + "%\"> </div>";
+                }
+                else if(data.data.ok<=20) {
+                    output1 = "<div class=\"progress-bar progress-bar-success progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.ok + "%\"> " + data.data.ok + "% </div>" +
+                        "<div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.sos + "%\"> " + data.data.sos + "% SOS </div>";
+                }
+                else if(data.data.sos<=20) {
+                    output1 = "<div class=\"progress-bar progress-bar-success progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.ok + "%\"> " + data.data.ok + "% OK </div>" +
+                        "<div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.sos + "%\"> " + data.data.sos + "% </div>";
+                }
+                else {
+                    output1 = "<div class=\"progress-bar progress-bar-success progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.ok + "%\"> " + data.data.ok + "% OK </div>" +
+                        "<div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" style=\"width:" +
+                        data.data.sos + "%\"> " + data.data.sos + "% SOS </div>";
+                }
+                $("#prog").html(output1);
+
+                let output2 = "Total Vote: " + data.data.totalVote;
+                $("#vote").html(output2);
+            }
+
+            $("#submit").click(async function() {
+                let topic = $("#topic").val();
+                
+                let response = await fetch(window.location.href + topic, {
+                    method: "GET",
+                    headers: {
+                        'Accept': 'application/json',
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                let message = await response.json();
+
+                console.log(message.message);
+                $("#topic").val("");
+            });
+            
+            setInterval(await getInfo, 2000);
+
+        });
+    </script>
+</head>
+<body>
+    <header>Instructor's Page</header>
+    <div id="main">
+        <div id="form">
+            <br>
+            Topic:
+            <input type="text" id="topic" placeholder="Type here">
+            <input type="button" value="Submit" id="submit">
+        </div>
+        <div class="container">
+            <div class="progress" id="prog">
+                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" style="width:50%">
+                    50% OK
+                </div>
+                <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" style="width:50%">
+                    50% SOS
+                </div>
+            </div>
+        </div>
+        <div id="vote">
+            Total Vote: 0
+        </div>
+    </div>
+    <footer>
+        By Soksedtha Ly
+    </footer>
+</body>
+</html>

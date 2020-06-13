@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student SOS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://drive.google.com/u/0/uc?id=1Gb58QY7dUd87ji3ZX2fTbju2v6Wlmyj2&export=download">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <%- include("./styles") %>
+    <script type="text/javascript">
+        $(document).ready(async function() {
+
+            var cookie = Cookies.get("set");
+            if(cookie==null) {
+                Cookies.set("set", "0", { expires: 0.125 });
+                Cookies.set("cookieCheck", "true");
+                alert("This website uses cookies.");
+            }
+
+            async function getTopic() {
+                let res = await fetch(window.location.href + "topic", {
+                    method: "GET",
+                    headers: {
+                        'Accept': 'application/json',
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                let topic = await res.json();
+
+                if(jQuery.isEmptyObject(topic)) {
+                    $("header").html("Topic Loading");
+                }
+                else {
+                    $("header").html(topic.message);
+                }
+            }
+            
+            getTopic();
+
+            $("#ok").click(async function() {
+                getTopic();
+                let response = await fetch(window.location.href+"ok", {
+                    method: "GET",
+                    headers: {
+                        'Accept': 'application/json',
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                let data = await response.json();
+                $("#output").html(data.message);
+            });
+
+            $("#sos").click(async function() {
+                getTopic();
+                let response = await fetch(window.location.href+"sos", {
+                    method: "GET",
+                    headers: {
+                        'Accept': 'application/json',
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                let data = await response.json();
+                $("#output").html(data.message);
+            });
+
+            setInterval(function() {
+                getTopic();
+                $("#output").html("");
+            }, 10000);
+
+        });
+    </script>
+</head>
+<body>
+    <header style="width: 96%;">
+        Topic Loading
+    </header>
+    <div id="main">
+        <h1>Welcome to Our Class</h1>
+        <hr>
+        <h2>How do you feel about the topic?</h2><br>
+        <b><button id="ok">Okay</button></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b><button id="sos">SOS!</button></b>
+    </div>
+    <div id="output"></div>
+    <footer>
+        By Soksedtha Ly
+    </footer>
+</body>
+</html>

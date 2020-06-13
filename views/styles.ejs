@@ -1,0 +1,158 @@
+<style>
+    * {
+        background-color: aliceblue;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+
+    html {
+        font-size: 100%;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header {
+        font-size: 2.5em;
+        background-color: #17468C;
+        color: white;
+        padding: 2%;
+        position: fixed;
+        top: 0%;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+
+    #main {
+        position: fixed;
+        top: 25%;
+        left: 10%;
+        width: 80%;
+    }
+
+    #form {
+        font-size: 2em;
+    }
+    input {
+        font-size: 1em;
+    }
+    input[type="button"] {
+        background-color: #17468C;
+        color: white;
+        border: 0;
+        opacity: 80%;
+        transition: 200ms;
+        outline: none;
+    }
+    input[type="button"]:hover {
+        opacity: 100%;
+    }
+    input[type="text"] {
+        text-align: left;
+    }
+    input[type="text"]::placeholder {
+        text-align: center;
+    }
+
+    hr {
+        width: 50%;
+        background-color: #A3802E;
+        height: 5px;
+        border-radius: 100%;
+    }
+
+    button {
+        border-radius: 100%;
+        padding: 1em;
+        font-size: 2em;
+        color: whitesmoke;
+        border: 0;
+        opacity: 60%;
+        transition: 200ms;
+        outline: none;
+    }
+    button:hover {
+        opacity: 100%;
+        outline: none;
+    }
+
+    #ok {
+        background-color: #56ab2f;
+    }
+    #sos {
+        background-color: #ED213A;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        font-size: 1.5em;
+        background-color: #17468C;
+        color: white;
+        padding: 1%;
+    }
+
+    .progress  {
+        width: 50%;
+        height: 4em;
+    }
+    .container {
+        position: fixed;
+        top: 50%;
+        left: 25%;
+        width: 100%;
+    }
+    .progress-bar {
+        position: relative;
+        margin: auto;
+        padding: 2%;
+        font-size: 2em;
+    }
+
+    #vote {
+        position: fixed;
+        bottom: 25%;
+        width: 80%;
+        font-size: 2em;
+    }
+
+    #output {
+        position: fixed;
+        bottom: 18%;
+        width: 100%;
+        font-size: 2em;
+        background-color: transparent;
+    }
+
+    @media only screen and (min-height: 800px) {
+        #main{
+            position: fixed;
+            top: 30%
+        }
+
+        #output {
+            position: fixed;
+            bottom: 25%;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        #main{
+            position: fixed;
+            top: 18%
+        }
+
+        #output {
+            position: fixed;
+            bottom: 15%;
+        }
+    }
+</style>
