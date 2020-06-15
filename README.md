@@ -16,7 +16,7 @@ A web application for students to respond to the instructor's teaching
 
 -----------------------------------------------------------------------------------------------
 
-## The Downfall of StudentSOS
+## The Flaws of StudentSOS
 
 *   Each student may be able to vote OK or SOS for more than once for each topic if they clear the cookies or access the student's page from different browsers.
 
