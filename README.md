@@ -56,9 +56,9 @@ A web application for students to respond to the instructor's online teaching
 
 ## To run the program (detailed):
 
-#### 1. In Command Prompt or Terminal, navigate to the StudentSOS directory.
+1. In Command Prompt or Terminal, navigate to the StudentSOS directory.
 
-#### 2. Run the command below to fire up the server.
+2. Run the command below to fire up the server.
 
    ​​	Command:    `node app.js`
 
@@ -75,7 +75,7 @@ A web application for students to respond to the instructor's online teaching
     *	You can also download node.js from the website, https://nodejs.org/en/download/.
     *	To terminate the server, press Ctrl+C.
 
-#### 3. Now, open ngrok.exe or command prompt or terminal and run the command below to expose the server to the Internet.
+3. Now, open ngrok.exe or command prompt or terminal and run the command below to expose the server to the Internet.
 
    Command:	`ngrok http 5500 --region=ap`	(Port: 5500, Region: Asia-Pacific)
 
