@@ -20,7 +20,7 @@ A web application for students to respond to the instructor's teaching
 
 *   Each student may be able to vote OK or SOS for more than once for each topic if they clear the cookies or access the student's page from different browsers.
 
-*   The maximum number of connections per minute is 20, but it goes up to 40 after setting up the Authtoken.
+*   The maximum number of connections in ngrok per minute is 20, but it goes up to 40 after setting up the Authtoken.
 
 *   The public URL for the student's page changes every time ngrok.exe restarts since ngrok could provide only temporary public URLs.
 
