@@ -1,12 +1,12 @@
 # StudentSOS
 
-A web application for students to respond to the instructor's teaching
+A web application for students to respond to the instructor's online teaching
 
 -----------------------------------------------------------------------------------------------
 
 ## About StudentSOS
 
-*   StudentSOS is a web application for students to respond to the instructor's teaching.
+*   StudentSOS is a web application for students to respond to the instructor's online teaching.
 
 *   StudentSOS consists of two pages send out in two different ports. One page is for students at port 5500, and the other page is for the instructor at port 8080.
 
